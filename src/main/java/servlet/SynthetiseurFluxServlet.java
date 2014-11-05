@@ -28,34 +28,37 @@ public class SynthetiseurFluxServlet extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String[] montab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
+    protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
+    	String[] rssTab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
+    	rssTab[1] = "";
+    	
+		String format = "xml";
+		String result = "";
 		PrintWriter out = response.getWriter();
-				
-		//on instancie l'objet FormatManager.
-		//String result = FormatManager.getJson(montab);	
-		
-		//renvoi un string
-		String result = FormatManager.getHTML(montab);
-		
-		//on affiche le json
-		//http://jsonformatter.curiousconcept.com pour afficher ce que le client verra de notre json
+
+		if (request.getParameter("format") != null) {
+			format = request.getParameter("format");
+		}
+
+		response.setCharacterEncoding("UTF-8");
+
+		if (format == "xml") {
+			response.setContentType("text/xml");
+			result = FormatManager.getXMLFromRss(rssTab);
+		}
+		else if (format == "html"){
+			response.setContentType("text/html");
+			result = FormatManager.getHTML(rssTab);	
+		}
+
+		else if(format == "json"){
+			response.setContentType("text/json");
+			result = FormatManager.getJson(rssTab);			
+		}		
+
 		out.println(result);
-		
 
-	/*
-		//Synthese ma_synthese = new Synthese(montab,"");
-		//ma_synthese.printListArticle();
-		String xml = " ";
-		xml = FormatManager.getXMLFromRss(montab);
-
-		System.out.println(xml);
-*/
-
-		// return data from rss with different formats
 	}
-
-
 }

@@ -48,10 +48,8 @@ public class FormatManager {
 			
 			String string_result = " ";
 			
-			try{
-
-				String[] montab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
-				Synthese ma_synthese = new Synthese(montab,"");
+			try{	
+				Synthese ma_synthese = new Synthese(rssUri,"sort");
 				List<Article> final_list = ma_synthese.getSynthese();
 				
 				//create factory
