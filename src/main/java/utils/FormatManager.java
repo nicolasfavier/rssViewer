@@ -33,12 +33,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 
-/***
- * 
- * @author nicolas
- * 
- *	had general functions like parse, unparse...
- */
 public class FormatManager {
 	
 		public FormatManager() {
@@ -125,7 +119,6 @@ public class FormatManager {
 			ma_synthese.printListArticle();
 	
 			//Gson est une librairie qui permet de passer de java a gson et inversement
-			//creation d'un objet gson
 			Gson gson = new Gson();		
 			//on converti de java a json en utilisant la librairie gson
 			resultJson = gson.toJson(ma_synthese.getSynthese());	
@@ -148,7 +141,6 @@ public class FormatManager {
 					
 					//on recupere dans un string le flux xml
 					String xml = FormatManager.getXMLFromRss(rssUri);
-					//String xml = "<article><title>TITRE</title><desc>KIKOU</desc><link>sdufgdshjfgdhjs</link></article>";
 
 					//A TransformerFactory instance can be used to create Transformer and Templates objects.
 					//creation d'une nouvelle instance TransformerFactory
@@ -156,11 +148,7 @@ public class FormatManager {
 					
 					//An instance of this abstract class (transformer) can transform a source tree into a result tree.
 					//on recupere notre fichier xsl sous forme de type transformer
-					//Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("C:\\Users\\Jean Mabru\\rssViewer\\resource\\myfichierxsl.xsl"));
-					
-					//il faut mettre le fichier xsl a la racine du dossier dans wamp (www), le fichier sera alors disponible 
-					//Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("D:\\workspace\\Eclipse\\rssViewer\\resource\\myfichierxsl.xsl"));
-					Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("http://localhost/siteWeb/myfichierxsl.xsl"));
+					Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("http://localhost:8080/rssViewer/xslTransformer.xsl"));
 	
 					//on prend notre transformer xsl
 					//la methode "transform" recois en parametre le string xml et le string de sortie 
