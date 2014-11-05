@@ -7,8 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import model.Synthese;
+import utils.FormatManager;
 
 
 
@@ -31,9 +34,13 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String[] montab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
 	
-		Synthese ma_synthese = new Synthese(montab,"");
-		ma_synthese.printListArticle();
+		//Synthese ma_synthese = new Synthese(montab,"");
+		//ma_synthese.printListArticle();
+		FormatManager manage = new FormatManager();
+		String xml = " ";
+		xml = FormatManager.getXMLFromRss(montab);
 
+		System.out.println(xml);
 
 		// return data from rss with different formats
 	}
