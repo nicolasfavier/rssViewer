@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Synthese;
+import utils.FormatManager;
 
 
 
@@ -30,11 +31,15 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String[] montab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
-	
-		Synthese ma_synthese = new Synthese(montab,"");
-		ma_synthese.printListArticle();
-
-
+		PrintWriter out = response.getWriter();
+				
+		//on instancie l'objet FormatManager en json.
+		FormatManager myFormat = new FormatManager(); 
+		String result = FormatManager.getJson(montab);	//renvoi un string
+		
+		//on affiche le json
+		out.println(result);
+		
 		// return data from rss with different formats
 	}
 
