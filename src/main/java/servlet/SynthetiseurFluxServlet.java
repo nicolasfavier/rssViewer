@@ -30,8 +30,8 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String[] montab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
-
+		String[] montab = {"http://wxdata.weather.com/wxdata/weather/rss/local/FRXX0055?cm_ven=LWO&cm_cat=rss"};
+//http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml
 		PrintWriter out = response.getWriter();
 				
 		//on instancie l'objet FormatManager.

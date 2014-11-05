@@ -50,7 +50,9 @@ public class FormatManager {
 			
 			try{
 
-				String[] montab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
+				String[] montab = {"http://wxdata.weather.com/wxdata/weather/rss/local/FRXX0055?cm_ven=LWO&cm_cat=rss"};
+				
+					//http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml
 				Synthese ma_synthese = new Synthese(montab,"");
 				List<Article> final_list = ma_synthese.getSynthese();
 				
