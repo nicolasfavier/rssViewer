@@ -38,6 +38,7 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 		String result = FormatManager.getJson(montab);	//renvoi un string
 		
 		//on affiche le json
+		//http://jsonformatter.curiousconcept.com pour afficher ce que le client verra de notre json
 		out.println(result);
 		
 		// return data from rss with different formats
