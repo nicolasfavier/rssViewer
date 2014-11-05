@@ -10,8 +10,16 @@ public class Article {
 	private String creator;
 	private String category;
 	
-	public Article(){}
-	
+	public Article() {
+		this.title = "";
+		this.description = "";
+		this.link = "";
+		this.date = "";
+		this.language = "";
+		this.creator = "";
+		this.category = "";
+	}
+
 	public String getTitle() {
 		return title;
 	}
