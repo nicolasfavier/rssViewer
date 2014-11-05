@@ -37,6 +37,9 @@
 		<xsl:if test="creator != ''">
 			<li>Author : <xsl:value-of select="./creator"/></li>
 		</xsl:if>
+		<xsl:if test="category != ''">
+			<li>Category : <xsl:value-of select="./category"/></li>
+		</xsl:if>
 	</ul>
 </xsl:template>
 

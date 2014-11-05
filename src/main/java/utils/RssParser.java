@@ -15,7 +15,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class RssParser {
 
 	private List<Article> newsSynthese = new ArrayList<Article>();
-	private boolean bitem, btitle, bdescription, blink, bdate, blanguage, bcreator;
+	private boolean bitem, btitle, bdescription, blink, bdate, blanguage, bcreator, bcategory;
 	private Article Atemp;
 
 	public List<Article> getNewsSynthese() {
@@ -69,6 +69,9 @@ public class RssParser {
 					if(qName.equals("dc:creator")){
 						bcreator = true;
 					}
+					if(qName.equals("category")){
+						bcategory = true;
+					}
 					
 					
 
@@ -107,6 +110,9 @@ public class RssParser {
 					if(qName.equals("dc:creator")){
 						bcreator = false;
 					}
+					if(qName.equals("category")){
+						bcategory = false;
+					}
 				}
 
 				public void characters(char ch[], int start, int length)
@@ -142,6 +148,10 @@ public class RssParser {
 					if(bitem && bcreator){
 						String new_creator = new String(ch,start,length);
 						Atemp.setCreator(new_creator);
+					}
+					if(bitem && bcategory){
+						String new_category = new String(ch,start,length);
+						Atemp.setcategory(new_category);
 					}
 					
 	

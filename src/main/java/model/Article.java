@@ -11,6 +11,9 @@ public class Article {
 	private String m_date;
 	private String m_language;
 	private String m_creator;
+	private String m_category;
+	
+	
 	
 	public Article(
 			) {
@@ -20,10 +23,11 @@ public class Article {
 		m_date = "";
 		m_language = "";
 		m_creator = "";
+		m_category = ""; 
 	}
 	
 	public Article(String title, String description, String link, String date,
-			String language, String creator) {
+			String language, String creator, String category) {
 		super();
 		m_title = title;
 		m_description = description;
@@ -31,8 +35,17 @@ public class Article {
 		m_date = date;
 		m_language = language;
 		m_creator = creator;
+		m_category = category;
 	}
 
+	public String getcategory(){
+		return m_category;
+	}
+	
+	public void setcategory(String m_category){
+		this.m_category = m_category;
+	}
+	
 	public String getTitle() {
 		return m_title;
 	}

@@ -33,7 +33,7 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 
 
     	String[] rssTab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml",
-    			"http://wxdata.weather.com/wxdata/weather/rss/local/FRXX0055?cm_ven=LWO&cm_cat=rss"};
+    			"http://www.sport.fr/rss/Liverpool.xml"};
   
     	
 		String format = "html";
