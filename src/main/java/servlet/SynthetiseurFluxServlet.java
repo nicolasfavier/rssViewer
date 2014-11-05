@@ -7,10 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
-import model.Synthese;
 import utils.FormatManager;
 
 
@@ -36,7 +33,6 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 	
 		//Synthese ma_synthese = new Synthese(montab,"");
 		//ma_synthese.printListArticle();
-		FormatManager manage = new FormatManager();
 		String xml = " ";
 		xml = FormatManager.getXMLFromRss(montab);
 

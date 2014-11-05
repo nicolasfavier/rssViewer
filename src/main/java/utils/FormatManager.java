@@ -1,5 +1,9 @@
 package utils;
 
+import model.Synthese;
+
+import com.google.gson.Gson;
+
 
 import java.io.StringWriter;
 import java.util.List;
@@ -100,13 +104,21 @@ public class FormatManager {
 			return node;
 		}
 
+		/*	Description public static String getJson(String[] rssUri)
+			Cette fonction permet de transformer un objet java de type list<Article> en format Json
+			Pour passer de java a json, on utilise la librairie gson 
+		*/
 		public static String getJson(String[] rssUri) {
 			String resultJson = "";
-			
-			//TODO get Json from rssUri
-			//create the synthese
-			//transform it in Json
-			//use Gson
+			//le format JSON permet de transmettre ma ressource (mon article) au client
+			Synthese ma_synthese = new Synthese(rssUri,"");
+			ma_synthese.printListArticle();
+	
+			//Gson est une librairie qui permet de passer de java a gson et inversement
+			//creation d'un objet gson
+			Gson gson = new Gson();		
+			//on converti de gson a json
+			resultJson = gson.toJson(ma_synthese.getSynthese());	
 			
 			return (resultJson);
 		}
