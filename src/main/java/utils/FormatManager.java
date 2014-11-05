@@ -94,11 +94,14 @@ public class FormatManager {
 			Element article = doc.createElement("article");
 			
 			article.appendChild(getNode(doc, article, "title", current_article.getTitle()));
+			article.appendChild(getNode(doc, article, "link", current_article.getLink()));
 			article.appendChild(getNode(doc, article, "date", current_article.getDate()));
+			article.appendChild(getNode(doc, article, "description", current_article.getDescription()));
 			article.appendChild(getNode(doc, article, "language", current_article.getLanguage()));
 			article.appendChild(getNode(doc, article, "creator", current_article.getCreator()));
-			article.appendChild(getNode(doc, article, "Description", current_article.getDescription()));
-			article.appendChild(getNode(doc, article, "link", current_article.getLink()));
+			article.appendChild(getNode(doc, article, "category", current_article.getcategory()));
+			
+			
 			
 			return article;
 		}
@@ -156,7 +159,8 @@ public class FormatManager {
 					//Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("C:\\Users\\Jean Mabru\\rssViewer\\resource\\myfichierxsl.xsl"));
 					
 					//il faut mettre le fichier xsl a la racine du dossier dans wamp (www), le fichier sera alors disponible 
-					Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("D:\\workspace\\Eclipse\\rssViewer\\resource\\myfichierxsl.xsl"));
+					//Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("D:\\workspace\\Eclipse\\rssViewer\\resource\\myfichierxsl.xsl"));
+					Transformer transformer = tFactory.newTransformer(new javax.xml.transform.stream.StreamSource("http://localhost/myfichierxsl.xsl"));
 	
 					//on prend notre transformer xsl
 					//la methode "transform" recois en parametre le string xml et le string de sortie 

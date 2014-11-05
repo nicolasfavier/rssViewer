@@ -27,12 +27,14 @@ public class Synthese {
 			String description = article.getDescription();
 			String language = article.getLanguage();
 			String link = article.getLink();
+			String category = article.getcategory();
 			
 			System.out.println("Title:"+title);
 			System.out.println("Date:"+date);
 			System.out.println("description:"+description);
 			System.out.println("Language:"+language);
 			System.out.println("Link:"+link);
+			System.out.println("category:"+category);
 			
 		}
 		
