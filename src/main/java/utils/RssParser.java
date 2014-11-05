@@ -151,7 +151,7 @@ public class RssParser {
 					}
 					if(bitem && bcategory){
 						String new_category = new String(ch,start,length);
-						Atemp.setcategory(new_category);
+						Atemp.setCategory(new_category);
 					}
 					
 	

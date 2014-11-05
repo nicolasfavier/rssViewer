@@ -27,7 +27,7 @@ public class Synthese {
 			String description = article.getDescription();
 			String language = article.getLanguage();
 			String link = article.getLink();
-			String category = article.getcategory();
+			String category = article.getCategory();
 			
 			System.out.println("Title:"+title);
 			System.out.println("Date:"+date);

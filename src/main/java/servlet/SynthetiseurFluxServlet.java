@@ -1,12 +1,16 @@
 package servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -15,7 +19,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.BodyContent;
 import utils.FormatManager;
+
+import com.google.gson.Gson;
 
 
 
@@ -73,20 +80,19 @@ public class SynthetiseurFluxServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-    	//String[] rssTab;
-    	//rssTab= request.getParameterValues("rssTab");
-    	
-    	
-    	String[] rssTab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
-    	
-    	
+    	String[] rssTab = {};
+    	String bodyRequest = getBody(request);
+    	    	
 		String format = "xml";
+		
+		Gson gson = new Gson();
+		BodyContent BodyContentObject = gson.fromJson(bodyRequest, BodyContent.class);
+		
+		format = BodyContentObject.getFormat();
+		rssTab = BodyContentObject.getRssTab();
+		
 		String result = "";
 		PrintWriter out = response.getWriter();
-
-		if (request.getParameter("format") != null) {
-			format = request.getParameter("format");
-		}
 
 		response.setCharacterEncoding("UTF-8");
 
@@ -135,6 +141,41 @@ public class SynthetiseurFluxServlet extends HttpServlet {
     	
     	return b;
     	
+    }
+    
+    
+    public static String getBody(HttpServletRequest request) throws IOException {
+
+        String body = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader bufferedReader = null;
+
+        try {
+            InputStream inputStream = request.getInputStream();
+            if (inputStream != null) {
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                char[] charBuffer = new char[128];
+                int bytesRead = -1;
+                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
+                    stringBuilder.append(charBuffer, 0, bytesRead);
+                }
+            } else {
+                stringBuilder.append("");
+            }
+        } catch (IOException ex) {
+            throw ex;
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException ex) {
+                    throw ex;
+                }
+            }
+        }
+
+        body = stringBuilder.toString();
+        return body;
     }
     
     
