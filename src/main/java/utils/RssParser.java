@@ -24,11 +24,6 @@ public class RssParser {
 
 	public void parseRss(String rssUri) {
 
-		// uri example
-		// "http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"
-		
-		
-		
 		try {
 
 			SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -40,7 +35,6 @@ public class RssParser {
 						String qName, Attributes attributes)
 						throws SAXException {
 
-					// TODO handle parsing
 					if(qName.equals("item")){
 						Atemp= new Article();
 						bitem = true;
@@ -80,83 +74,56 @@ public class RssParser {
 				public void endElement(String uri, String localName,
 						String qName) throws SAXException {
 
-					// TODO handle parsing
 					if(qName.equals("item")){
 						bitem = false;
 						newsSynthese.add(Atemp);
-					}
-					
-					
-					if(qName.equals("title")){
-						btitle = false;
-					}
-					
-					if(qName.equals("description")){
-						bdescription = false;
-					}
-					
-					if(qName.equals("link")){
-						blink = false;
-					}
-					
-					if(qName.equals("dc:date")){
-						bdate = false;
-					}
-					
-					if(qName.equals("dc:language")){
-						blanguage = false;
-					}
-					
-					if(qName.equals("dc:creator")){
-						bcreator = false;
-					}
-					if(qName.equals("category")){
-						bcategory = false;
 					}
 				}
 
 				public void characters(char ch[], int start, int length)
 						throws SAXException {
 
-					// TODO handle parsing
 					
 					if(bitem && btitle){
 						String new_title = new String(ch,start,length);
 						Atemp.setTitle(new_title);
+						btitle = false;
 					}
 					
 					if(bitem && bdescription){
 						String new_description = new String(ch,start,length);
 						Atemp.setDescription(new_description);
+						bdescription = false;
 					}
 					
 					if(bitem && blink){
 						String new_link = new String(ch,start,length);
 						Atemp.setLink(new_link);
+						blink = false;
 					}
 					
 					if(bitem && bdate){
 						String new_date = new String(ch,start,length);
 						Atemp.setDate(new_date);
+						bdate = false;
 					}
 					
 					if(bitem && blanguage){
 						String new_language = new String(ch,start,length);
 						Atemp.setLanguage(new_language);
+						blanguage = false;
 					}
 					
 					if(bitem && bcreator){
 						String new_creator = new String(ch,start,length);
 						Atemp.setCreator(new_creator);
+						bcreator = false;
 					}
 					if(bitem && bcategory){
 						String new_category = new String(ch,start,length);
 						Atemp.setcategory(new_category);
+						bcategory = false;
 					}
-					
-	
-					
-
 				}
 
 			};
