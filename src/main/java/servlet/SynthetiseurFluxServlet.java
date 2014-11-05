@@ -2,6 +2,12 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,9 +38,15 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
     	String[] rssTab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml",
-    			"http://wxdata.weather.com/wxdata/weather/rss/local/FRXX0055?cm_ven=LWO&cm_cat=rss"};
+    			"http://wxdata.weather.com/wxdata/weather/rss/local/FRXX0055?cm_ven=LWO&cm_cat=rss"
+    			};
   
     	
+    	String[] new_string = supprimer_doublon(rssTab);
+    	boolean b = check_url("http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml");
+    	
+    			
+    			
 		String format = "xml";
 		String result = "";
 		PrintWriter out = response.getWriter();
@@ -62,4 +74,35 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 		out.println(result);
 
 	}
+    
+    public static String[] supprimer_doublon(String[] args)
+  	{
+ 
+	    List<String> list = Arrays.asList(args);
+	    Set<String> set = new HashSet(list);
+	 
+	    String[] result = new String[set.size()];
+	    result = (String[]) set.toArray(result);
+	 
+	   return result;
+     }
+    
+    public static boolean check_url(String urlString) throws IOException{
+    	
+    	URL url = new URL(urlString);
+    	HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+    	int responseCode = huc.getResponseCode();
+    	boolean b;
+    	
+    	if(responseCode != 404){
+    	    b = true;
+    	}else{
+    	    b = false;
+    	}
+    	
+    	return b;
+    	
+    }
+    
+    
 }
