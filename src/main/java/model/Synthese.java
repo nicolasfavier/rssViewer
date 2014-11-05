@@ -13,9 +13,6 @@ public class Synthese {
 	public Synthese(){
 		
 	}
-	
-	//TODO add setters and getters
-
 	public void printListArticle(){
 		
 		
