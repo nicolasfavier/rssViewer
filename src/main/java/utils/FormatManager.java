@@ -94,11 +94,13 @@ public class FormatManager {
 			Element article = doc.createElement("article");
 			
 			article.appendChild(getNode(doc, article, "title", current_article.getTitle()));
+			article.appendChild(getNode(doc, article, "link", current_article.getLink()));
 			article.appendChild(getNode(doc, article, "date", current_article.getDate()));
+			article.appendChild(getNode(doc, article, "description", current_article.getDescription()));
 			article.appendChild(getNode(doc, article, "language", current_article.getLanguage()));
 			article.appendChild(getNode(doc, article, "creator", current_article.getCreator()));
-			article.appendChild(getNode(doc, article, "Description", current_article.getDescription()));
-			article.appendChild(getNode(doc, article, "link", current_article.getLink()));
+			
+			
 			
 			return article;
 		}

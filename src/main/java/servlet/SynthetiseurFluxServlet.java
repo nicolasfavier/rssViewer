@@ -32,9 +32,9 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
     	String[] rssTab = {"http://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml"};
-    	rssTab[1] = "";
+    	//rssTab[1] = "";
     	
-		String format = "xml";
+		String format = "html";
 		String result = "";
 
 		PrintWriter out = response.getWriter();

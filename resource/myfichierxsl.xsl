@@ -19,12 +19,24 @@
 
 <xsl:template match="article">
 	<ul>
-		<li><xsl:value-of select="./title"/></li>
-		<li><xsl:value-of select="./desc"/></li>
-		<li><xsl:value-of select="./link"/></li>
-		<li><xsl:value-of select="./date"/></li>
-		<li><xsl:value-of select="./language"/></li>
-		<li><xsl:value-of select="./creator"/></li>
+		<xsl:if test="title != ''">
+			<li>Title : <xsl:value-of select="./title"/></li>
+		</xsl:if>
+		<xsl:if test="desc != ''">
+			<li>Description : <xsl:value-of select="./desc"/></li>
+		</xsl:if>
+		<xsl:if test="link != ''">
+			<li>Link : <xsl:value-of select="./link"/></li>
+		</xsl:if>
+		<xsl:if test="date != ''">
+			<li>Date : <xsl:value-of select="./date"/></li>
+		</xsl:if>
+		<xsl:if test="language != ''">
+			<li>Language : <xsl:value-of select="./language"/></li>
+		</xsl:if>
+		<xsl:if test="creator != ''">
+			<li>Author : <xsl:value-of select="./creator"/></li>
+		</xsl:if>
 	</ul>
 </xsl:template>
 
