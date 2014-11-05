@@ -36,6 +36,7 @@ public class SynthetiseurFluxServlet extends HttpServlet {
     	
 		String format = "xml";
 		String result = "";
+
 		PrintWriter out = response.getWriter();
 
 		if (request.getParameter("format") != null) {
