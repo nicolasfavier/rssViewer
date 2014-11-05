@@ -35,7 +35,9 @@ public class SynthetiseurFluxServlet extends HttpServlet {
 				
 		//on instancie l'objet FormatManager en json.
 		FormatManager myFormat = new FormatManager(); 
-		String result = FormatManager.getJson(montab);	//renvoi un string
+		//String result = FormatManager.getJson(montab);	//renvoi un string
+		
+		String result = FormatManager.getHTML(montab);
 		
 		//on affiche le json
 		//http://jsonformatter.curiousconcept.com pour afficher ce que le client verra de notre json
