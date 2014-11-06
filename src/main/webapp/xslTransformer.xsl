@@ -9,24 +9,21 @@
 
 	
 <xsl:template match="/">
-	<html><head>
-		<title>Presentations</title>
-		</head><body>
 			<h1>Affichage des articles</h1>
 			<xsl:apply-templates select="@*|*|processing-instruction()" /> <!--@*|* ==> selectionne toutes les branches de l'arbre -->
-		</body></html>
 </xsl:template>
 
 <xsl:template match="article">
-	<ul>
 		<xsl:if test="title != ''">
-			<li>Title : <xsl:value-of select="./title"/></li>
+			<h3><xsl:value-of select="./title"/></h3>
 		</xsl:if>
-		<xsl:if test="desc != ''">
-			<li>Description : <xsl:value-of select="./desc"/></li>
+	
+	<ul>
+		<xsl:if test="description != ''">
+			<li>Description : <xsl:value-of select="./description"/></li>
 		</xsl:if>
 		<xsl:if test="link != ''">
-			<li>Link : <xsl:value-of select="./link"/></li>
+			<li>Link : <a><xsl:attribute name='href' select="./link"/><xsl:value-of select="./link"/></a></li>
 		</xsl:if>
 		<xsl:if test="date != ''">
 			<li>Date : <xsl:value-of select="./date"/></li>
